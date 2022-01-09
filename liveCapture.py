@@ -1,5 +1,6 @@
 import pyshark,time
 from ipInfo import IP
+from kmeanAI import KMEAN
 
 from registeredIPS import registeredIPS 
 class packetCapture:
@@ -29,4 +30,6 @@ class packetCapture:
                 for ip in self.registeredIPS.ips:
                     print("Average data usuage of " + str(ip.ipsrc) + " in the past five minutes: " + str(ip.averageNetworkTraffic) + " traffic per second")
                 self.timer = time.perf_counter()
+            if time.perf_counter() - self.timer > 400:
+                KMEAN(self.registeredIPS).predict()
             self.newIP = True
