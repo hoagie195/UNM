@@ -8,7 +8,7 @@ import pandas as pd
 class KMEAN:
     def __init__(self):
         self.data = pd.read_csv("kddcup99_csvnew.csv", encoding='utf-8')
-        self.clusters = 7
+        self.clusters = 23
         super().__init__()
     
     def predict(self):
@@ -18,7 +18,7 @@ class KMEAN:
         print(km.labels_)
         print(km.inertia_)
         pca = PCA(3)
-        pca.fit(self.data)
+        pca.fit(self.data) #Turn data into a three dimensional form for viewing
         pca_data = pd.DataFrame(pca.transform(self.data))
         print(pca_data.head())
         pca_km = km.fit_predict(pca_data)
